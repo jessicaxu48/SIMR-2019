@@ -1,0 +1,69 @@
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        FileReader testpdb = new FileReader("rs34805604_wild_1050_-_1200.txt");
+        FileWriter newline = new FileWriter("newCarbonChainsrs34805604_wild_1050_-_1200.txt");
+        BufferedReader reader = new BufferedReader(testpdb); //reads through text file
+        String line;
+        int linenum = 0;
+        while (linenum<2276) { //number of lines in pdb
+            line = reader.readLine();
+            System.out.println(line);
+
+            /* debugging
+            if (line == null) {
+                System.out.println("null");
+
+            }
+            else {
+                System.out.println("not null");
+            }
+            */
+
+            int isacid = line.indexOf(" N   "); //if the string does not exist in "line", returns index of -1
+            int isacid1 = line.indexOf("CA  ");
+            int isacid2 = line.indexOf("C   ");
+            int isacid3 =line.indexOf(" O   ");
+            
+
+            if ((isacid != -1)) { //"CB" exists in the line
+                //System.out.println("loop has run"); //debugging
+                newline.write(line); //writes the carbon-backbone-containing line to the new file
+
+            }
+            else if (isacid1 != -1) {  //"CG" exists in this line
+                //System.out.println("2nd loop");
+                newline.write(line);
+            }
+            else if ((isacid2 != -1)) { // "CE" exists in this line
+                //System.out.println("3rd loop");
+                newline.write(line);
+
+            }
+            else if ( (isacid3 != -1) ) { //"CD" exists in this line
+                //System.out.println("4th loop");
+                newline.write(line);
+
+            }
+            linenum = linenum + 1;
+
+
+            try {
+                throw new IOException();
+            } catch (IOException e) {
+                e.printStackTrace(); //prints out error if it occurs
+            }
+
+
+        }
+        reader.close();
+
+        testpdb.close();
+
+        System.out.println("Finished"); //makes sure the while loop was exited
+
+    }
+}
+
