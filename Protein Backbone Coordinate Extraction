@@ -1,0 +1,37 @@
+import java.io.*;
+import java.io.FileWriter;
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+	// extract coords from file
+        FileReader coords = new FileReader("newcarbonrs34410987wild.txt"); //file to be modified
+        FileWriter newline = new FileWriter("Splitnewcarbonrs34410987wild.txt"); //file to write coords to
+
+        BufferedReader reader = new BufferedReader(coords);
+        double[][] matrix=new double[408] [2];
+        int rows=0;
+        int columns=0;
+        int numlines=0;
+        String line;
+
+        while(numlines<512){
+            line=reader.readLine();
+            String [] splitarray= line.split("\\s+");
+            for(int i=0; i<3; i++) {
+                newline.write("\n" + splitarray[i]);
+            }
+            numlines++;
+        }
+
+    
+
+        try {
+            throw new IOException();
+        } catch (IOException e) {
+            e.printStackTrace(); //prints out error if it occurs
+        }
+        newline.close();
+        reader.close();
+        System.out.println("finished");
+    }
+}
