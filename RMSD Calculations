@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.Scanner; import java.io.FileReader;
+public class Main {
+
+public static void main(String[] args) throws IOException {
+FileReader readmatrix = new FileReader("Splitnewcarbonrs34410987.txt"); //mutated
+Scanner matrixreader = new Scanner(readmatrix);
+FileReader readmatrix2 = new FileReader("Splitnewcarbonrs34410987wild.txt"); //wild
+
+Scanner matrixreader2 = new Scanner(readmatrix2); double matrixvalue;
+double matrixvalue2;
+double x;
+double y = 0;
+double sqrty;
+double sqrtatomnum;
+double finalrmsd;
+int atomnum=0;
+while(matrixreader.hasNextLine() && matrixreader2.hasNextLine()) { //summation
+if(matrixreader.hasNextLine() && matrixreader2.hasNextLine()) { matrixvalue = matrixreader.nextDouble();
+System.out.println(matrixvalue);
+matrixvalue2 = matrixreader2.nextDouble(); System.out.println(matrixvalue2);
+x = Math.pow((matrixvalue - matrixvalue2), 2); y = y + x;
+} else{
+break; }
+} atomnum++;
+}
+readmatrix.close();
+matrixreader.close();
+readmatrix2.close();
+matrixreader2.close();
+sqrty=Math.sqrt(y); //plugging into RMSD formula sqrtatomnum=Math.sqrt(atomnum); finalrmsd=(1/sqrtatomnum)*(sqrty); System.out.println("RMSD is " + finalrmsd);
+try {
+throw new IOException();
+} catch (IOException e) {
+e.printStackTrace(); //prints out error if it occurs }
+}
